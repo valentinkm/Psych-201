@@ -42,6 +42,8 @@
 | Spatial bandit | age (7-55) | 28,800 | [Link](https://journals.sagepub.com/doi/10.1177/0956797619863663) | Kristin Witte |
 | Spatial bandit | age (5-55) | 56,200 | [Link](https://www.nature.com/articles/s41562-023-01662-1) | Kristin Witte |
 | Spatial bandit | age (4-9) | 10,200 | [Link](https://hcai-munich.com/pubs/meder2021development.pdf) | Kristin Witte |
+| Belief updating | - | ? | [Link](https://www.sciencedirect.com/science/article/pii/S0010027721003620) | Jason Burton |
+| Likelihood ratings | - | 45,000 | [Link](https://pubmed.ncbi.nlm.nih.gov/38695798/) | David Sebastian Broska |
 
 # List of open data sets
 
@@ -52,7 +54,6 @@
 | Optimal stopping | - | 181,200 | [Link](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001566) |
 | Risky choice | emotions | 101,600 | [Link](https://www.nature.com/articles/s41562-021-01213-6) |
 | Cognitive biases | cross-cultural | 74,370 | [Link](https://www.nature.com/articles/s41598-023-36339-2) |
-| Likelihood ratings | - | 45,000 | [Link](https://pubmed.ncbi.nlm.nih.gov/38695798/) |
 | AutobioMemorySimilarity | ? | ~38,475 | [Link](https://github.com/HLab/AutobioMemorySimilarity) |
 | Economic games | - | 31,372 | [Link](https://www.nature.com/articles/s41467-022-29372-8#data-availability) |
 | Decision-making | ? | 23,000 | [Link](www.pnas.org/doi/epub/10.1073/pnas.2400215121) |
