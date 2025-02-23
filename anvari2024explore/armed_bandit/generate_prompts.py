@@ -24,13 +24,14 @@ groups = df_all.groupby(["participant.code", "session.code"])
 
 # Fixed instructions text for the multi-armed bandit task
 instructions = (
-    "You will see five buttons on the screen. Each trial, you must choose one button by clicking on it. "
-    "Every button has a different average payout. First, you will complete a 20-trial practice block (not scored). "
-    "Then, you will complete 4 incentivized blocks of 40 trials each.\n\n"
-    "After you click a button, the system takes about one second to process your choice. "
-    "The average payout for each button stays the same within a block, but may change between blocks. "
-    "At the end of each block, you will see how many points you earned in that block. "
-    "Only the points from the 4 incentivized blocks count toward your bonus. The bonus rate is 1 pence per 100 points."
+    "In this task, five buttons will be displayed on the screen, and on each trial you have to select one of the five buttons by clicking on it. "
+    "Each time you select a button, you earn some points. Buttons differ from one another in the average points that they yield. "
+    "There will be 20 trials in the practice block and 40 in each of the remaining 4 blocks.\n\n"
+    "Note that after each click the system needs about one second to process your entry. "
+    "The average payout from each button remains the same within each block, but may change from one block to the next.\n\n"
+    "At the end of each block, you'll get feedback about how many points you earned in that block. "
+    "The first block will be for practice, but the points you earn from the remaining 4 blocks will be used to determine your bonus payment for this task. "
+    "For this task, you will be paid a bonus of 1 pence (£0.01) per 100 points."
 )
 
 all_prompts = []
