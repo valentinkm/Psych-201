@@ -37,9 +37,6 @@ for (participant_code, session_code), df_session in groups:
 
     # Begin building the prompt text with the instructions
     prompt_text = instructions + "\n\n"
-    
-    # Collect reaction times (if available)
-    rt_list = []
 
     # Process blocks (Block 1 = practice, Blocks 2+ = incentivized)
     blocks = sorted(df_session["block"].unique())
@@ -59,12 +56,7 @@ for (participant_code, session_code), df_session in groups:
             trial_num = int(row["trial"])
             payoff = row["player.landscape_payoff"]
             cumulative = cumulative_points[i]
-            # The picture configuration is assumed to be stored in "player.nk_landscape"
             picture_config = row["player.nk_landscape"]
-
-            # Record reaction time if available
-            if "player.submission_times" in row and pd.notnull(row["player.submission_times"]):
-                rt_list.append(row["player.submission_times"])
 
             # Build the trial description
             trial_line = (
@@ -82,8 +74,7 @@ for (participant_code, session_code), df_session in groups:
         "text": prompt_text,
         "experiment": "alien_game",
         "participant": participant_code,
-        "session": session_code,
-        "RTs": rt_list
+        "session": session_code
     }
 
     all_prompts.append(prompt_dict)
