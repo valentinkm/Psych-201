@@ -19,7 +19,6 @@ df2 = pd.read_csv(file2)
 df_all = pd.concat([df1, df2], ignore_index=True)
 
 # Group the data by participant code and session code
-# (Each group corresponds to one experimental session)
 groups = df_all.groupby(["participant.code", "session.code"])
 
 # Fixed instructions text for the multi-armed bandit task
@@ -45,11 +44,7 @@ for (participant_code, session_code), df_session in groups:
     choice_options = randomized_choice_options(num_choices=5)
 
     # Start building the prompt text
-    prompt_text = instructions + "\n"
-    prompt_text += "\n"
-
-    # Collect reaction times (if available)
-    rt_list = []
+    prompt_text = instructions + "\n\n"
 
     # Get the unique block numbers (e.g., 1 = practice, 2+ = incentivized)
     blocks = sorted(df_session["block"].unique())
@@ -59,7 +54,7 @@ for (participant_code, session_code), df_session in groups:
         df_block = df_session[df_session["block"] == block]
         cumulative_points = df_block["player.payoff.1"].cumsum().tolist()
 
-        # Label block: Block 1 is practice; subsequent blocks are incentivized (numbered block-1)
+        # Label block: Block 1 is practice, subsequent blocks are incentivized (numbered block-1)
         if block == 1:
             prompt_text += "Practice Block:\n\n"
         else:
@@ -78,10 +73,6 @@ for (participant_code, session_code), df_session in groups:
             except IndexError:
                 chosen_button = f"Option{selection}"
 
-            # Record reaction time if available
-            if "player.submission_times" in row and pd.notnull(row["player.submission_times"]):
-                rt_list.append(row["player.submission_times"])
-
             displayed_buttons = ", ".join(choice_options)
 
             # Trial description
@@ -94,7 +85,6 @@ for (participant_code, session_code), df_session in groups:
 
         prompt_text += "\n"
 
-    prompt_text += "\n"
     prompt_text += "End of session.\n"
 
     # Prompt dict for one session
@@ -102,14 +92,12 @@ for (participant_code, session_code), df_session in groups:
         "text": prompt_text,
         "experiment": "multi_armed_bandit",
         "participant": participant_code,
-        "session": session_code,
-        "RTs": rt_list
+        "session": session_code
     }
 
     all_prompts.append(prompt_dict)
 
 # Write all to jsonl
-script_dir = os.path.dirname(os.path.abspath(__file__))
 output_file = os.path.join(script_dir, "prompts.jsonl")
 with jsonlines.open(output_file, mode='w') as writer:
     writer.write_all(all_prompts)
