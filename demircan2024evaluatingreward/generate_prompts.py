@@ -24,7 +24,7 @@ def clean_name(name_in):
     return name_out.replace("_", " ")
 
 
-exp = pd.read_csv("https://osf.io/v4z3g/download")
+exp = pd.read_csv("https://osf.io/6exjm/download")
 
 all_prompts = []
 for par_no, par in enumerate(exp.participant.unique()):
